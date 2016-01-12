@@ -1,0 +1,5 @@
+./.classpath
+./build.properties
+bin/
+./.project
+./build.xml
