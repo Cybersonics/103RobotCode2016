@@ -32,17 +32,13 @@ public class Robot extends IterativeRobot {
     	
     }
 
-    /**
-     * This function is called periodically during autonomous
-     */
-    public void autonomousPeriodic() {
+    @Override
+    public void autonomousInit() {
     	auto.start();
     }
 
-    /**
-     * This function is called periodically during operator control
-     */
-    public void teleopPeriodic() {
+    @Override
+    public void teleopInit() {
         teleop.start();
     }
     
