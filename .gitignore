@@ -3,3 +3,5 @@ build.properties
 bin/
 .project
 build.xml
+.idea/
+*.iml
