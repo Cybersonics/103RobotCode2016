@@ -1,7 +1,6 @@
 package team103.robot.core;
 
 import edu.wpi.first.wpilibj.Joystick;
-import edu.wpi.first.wpilibj.Joystick.ButtonType;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.command.Command;
 
@@ -52,7 +51,6 @@ public class Input {
 			
 			@Override
 			protected boolean isFinished() {
-				// TODO Auto-generated method stub
 				return false;
 			}
 			
@@ -74,7 +72,6 @@ public class Input {
 						try {
 							join();
 						} catch (InterruptedException e) {
-							// TODO Auto-generated catch block
 							e.printStackTrace();
 						}
 					}
