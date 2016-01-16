@@ -6,5 +6,6 @@ dist/
 .project
 build.xml
 sysProps.xml
+build/
 .idea/
 *.iml
