@@ -1,7 +1,10 @@
 .classpath
 build.properties
 bin/
+dist/
+.settings/
 .project
 build.xml
+sysProps.xml
 .idea/
 *.iml

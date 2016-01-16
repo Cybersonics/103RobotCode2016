@@ -1,61 +1,60 @@
 package team103.robot.teleop;
 
-import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.RobotState;
-import team103.robot.core.Input;
-import team103.robot.core.Input.Buttons;
-import team103.robot.core.Input.Controllers;
-import team103.robot.core.Robot;
+import edu.wpi.first.wpilibj.livewindow.LiveWindow;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import team103.robot.Input;
+import team103.robot.Robot;
+import team103.robot.subsystems.SubsystemsTank;
 
 public class Teleop {
 
-	public Teleop() {
-		
-	}
-	
-	public Thread runThread;
-	
-	public void start(){
-	
-		runThread = new Thread(){
-			@Override
-			public void run(){
-				Robot.subsystems.robotDrive.tankDrive(Input.Controllers.LeftStick.getStick(), 
-						  Input.Controllers.RightStick.getStick());
+    public Teleop() {
 
-				loop();
-				
-				try {
-					join();
-				} catch (InterruptedException e) {
-					System.out.println("Teleop Thread Interupted");
-					e.printStackTrace();
-				}
-			}
-		};
-	}
-	
-	public void stop(){
-		runThread.interrupt();
-	}
-	
-	private void loop(){
-		
-		while(RobotState.isOperatorControl() && RobotState.isEnabled()){
-			input();
-			
-			
-			
-		}
-		stop();
-	}
+    }
 
-	private void input(){
-		
-		if(Input.isPressed(Buttons.Button1.getButton(), Controllers.LeftStick.getStick())){
-			
-		}
-		
-	}
-	
+    private Thread runThread;
+
+    public void start() {
+
+        runThread = new Thread() {
+            @Override
+            public void run() {
+                SubsystemsTank.init();
+
+                loop();
+
+                try {
+                    join();
+                } catch (InterruptedException e) {
+                    System.out.println("Teleop Thread Interupted");
+                    e.printStackTrace();
+                }
+            }
+        };
+        runThread.start();
+    }
+
+    public void stop() {
+        runThread.interrupt();
+    }
+
+    private void loop() {
+
+        while (RobotState.isOperatorControl() && RobotState.isEnabled()) {
+            input();
+
+            SubsystemsTank.robotDrive.tankDrive(Input.Controllers.LeftStick.getRawAxis(1),
+                                                Input.Controllers.RightStick.getRawAxis(1));
+
+        }
+        stop();
+    }
+
+    private void input() {
+
+        
+
+    }
+
 }
